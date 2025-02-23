@@ -1765,7 +1765,7 @@ void track(int round, int direction) {
   while (1) {
     linefollow();
     if (intersectionL && intersectionR) {
-      move(forward, T90 / 4, 100);
+      move(forward, T90 /3, 100);
       if (direction == Right) {
         move(Right, T90, 100);
       } else {
@@ -1777,37 +1777,25 @@ void track(int round, int direction) {
       while (inter_cnt < track_rounds) {
         linefollow();
         if (intersectionL || intersectionR) {
-          while (intersectionL && intersectionR)
-            ;
-          move(forward, T90 / 3, 100);
+          while (intersectionL && intersectionR);
+          move(forward, T90 / 2.5, 100);
           inter_cnt += 1;
           lcd.clear();
           lcd.print(inter_cnt);
         }
       }
-      move(Back, T90 / 3, 100);
-      move(Left, T90 * 2, 100);
+      
       go(60, 60);
-      inter_cnt = 0;
-      direction = Left;
-      while (inter_cnt < 1) {
-        linefollow();
-        if (intersectionL || intersectionR) {
-          while (intersectionL && intersectionR)
-            ;
-          move(forward, T90 / 4, 100);
-          inter_cnt += 1;
-          lcd.clear();
-          lcd.print(inter_cnt);
-        }
-      }
-      move(forward, T90 / 6, 100);
-      if (direction = Right) {
+       move(forward, T90 / 6, 100);
+      if (direction == Right) {
         move(Right, T90, 100);
       } else {
         move(Left, T90, 100);
       }
       move(forward, T90 / 2, 100);
+      inter_cnt = 0;
+      direction = Left;
+     
       break;
     }
   }
@@ -1945,7 +1933,7 @@ void color_detection() {
       if (color_L == GREEN) {
         lcd.clear();
         lcd.print("Football");
-        move(forward,T90/5,100);
+        move(forward,T90/3,100);
         move(Left,T90,150);
         football();
       }
@@ -1955,7 +1943,7 @@ void color_detection() {
       if (color_L == SILVER) {
         lcd.clear();
         lcd.print("Obstacle");
-        move(forward,T90/5,100);
+        move(forward,T90/3,100);
         move(Left,T90,150);
         obstacle();
       }
@@ -1965,7 +1953,7 @@ void color_detection() {
       if (color_L == BLUE) {
         lcd.clear();
         lcd.print("weight lift");
-        move(forward,T90/5,100);
+        move(forward,T90/3,100);
         move(Left,T90,150);
         wlift();
       }
@@ -1975,7 +1963,7 @@ void color_detection() {
       if (color_L == RED) {
         lcd.clear();
         lcd.print("Trck");
-        move(forward,T90/5,100);
+        move(forward,T90/3,100);
         move(Left,T90,150);
         track(4,Left);
       }
@@ -1985,7 +1973,7 @@ void color_detection() {
       if (color_L == YELLOW) {
         lcd.clear();
         lcd.print("archery");
-        move(forward,T90/5,100);
+        move(forward,T90/3,100);
         move(Left,T90,150);
         archery();
       }
@@ -1998,8 +1986,8 @@ void color_detection() {
       if (color_R == GREEN) {
         lcd.clear();
         lcd.print("Football");
-        move(forward,T90/5,100);
-        move(Left,T90,150);
+        move(forward,T90/3,100);
+        move(Right,T90,150);
         football();
       }
     }
@@ -2008,8 +1996,8 @@ void color_detection() {
       if (color_R == SILVER) {
         lcd.clear();
         lcd.print("Obstacle");
-        move(forward,T90/5,100);
-        move(Left,T90,150);
+        move(forward,T90/3,100);
+        move(Right,T90,150);
         obstacle();
       }
     }
@@ -2018,8 +2006,8 @@ void color_detection() {
       if (color_R == BLUE) {
         lcd.clear();
         lcd.print("weight lift");
-        move(forward,T90/5,100);
-        move(Left,T90,150);
+        move(forward,T90/3,100);
+        move(Right,T90,150);
         wlift();
       }
     }
@@ -2028,9 +2016,9 @@ void color_detection() {
       if (color_R == RED) {
         lcd.clear();
         lcd.print("Trck");
-        move(forward,T90/5,100);
-        move(Left,T90,150);
-        track(4,Left);
+        move(forward,T90/3,100);
+        move(Right,T90,150);
+        track(4,Right);
       }
     }
     if (right_card == YELLOW) {
@@ -2038,8 +2026,8 @@ void color_detection() {
       if (color_R == YELLOW) {
         lcd.clear();
         lcd.print("archery");
-        move(forward,T90/5,100);
-        move(Left,T90,150);
+        move(forward,T90/3,100);
+        move(Right,T90,150);
         archery();
       }
     }
