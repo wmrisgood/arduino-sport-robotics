@@ -1937,12 +1937,16 @@ void color_detection() {
   int inter_detected = false;
   int deadend_detected = false;
   left_card = color_L;
+  right_card = color_R;
   if (left_card != WHITE) {
     if (left_card == GREEN) {
         go(0, 0);
+        beep(1);
       if (color_L == GREEN) {
         lcd.clear();
         lcd.print("Football");
+        move(forward,T90/5,100);
+        move(Left,T90,150);
         football();
       }
     }
@@ -1951,6 +1955,8 @@ void color_detection() {
       if (color_L == SILVER) {
         lcd.clear();
         lcd.print("Obstacle");
+        move(forward,T90/5,100);
+        move(Left,T90,150);
         obstacle();
       }
     }
@@ -1959,6 +1965,8 @@ void color_detection() {
       if (color_L == BLUE) {
         lcd.clear();
         lcd.print("weight lift");
+        move(forward,T90/5,100);
+        move(Left,T90,150);
         wlift();
       }
     }
@@ -1967,6 +1975,8 @@ void color_detection() {
       if (color_L == RED) {
         lcd.clear();
         lcd.print("Trck");
+        move(forward,T90/5,100);
+        move(Left,T90,150);
         track(4,Left);
       }
     }
@@ -1975,6 +1985,61 @@ void color_detection() {
       if (color_L == YELLOW) {
         lcd.clear();
         lcd.print("archery");
+        move(forward,T90/5,100);
+        move(Left,T90,150);
+        archery();
+      }
+    }
+  }
+  else if (right_card != WHITE) {
+    if (right_card == GREEN) {
+        go(0, 0);
+        beep(1);
+      if (color_R == GREEN) {
+        lcd.clear();
+        lcd.print("Football");
+        move(forward,T90/5,100);
+        move(Left,T90,150);
+        football();
+      }
+    }
+    if (right_card == SILVER) {
+      go(0, 0);
+      if (color_R == SILVER) {
+        lcd.clear();
+        lcd.print("Obstacle");
+        move(forward,T90/5,100);
+        move(Left,T90,150);
+        obstacle();
+      }
+    }
+    if (right_card == BLUE) {
+      go(0, 0);
+      if (color_R == BLUE) {
+        lcd.clear();
+        lcd.print("weight lift");
+        move(forward,T90/5,100);
+        move(Left,T90,150);
+        wlift();
+      }
+    }
+    if (right_card == RED) {
+      go(0, 0);
+      if (color_R == RED) {
+        lcd.clear();
+        lcd.print("Trck");
+        move(forward,T90/5,100);
+        move(Left,T90,150);
+        track(4,Left);
+      }
+    }
+    if (right_card == YELLOW) {
+      go(0, 0);
+      if (color_R == YELLOW) {
+        lcd.clear();
+        lcd.print("archery");
+        move(forward,T90/5,100);
+        move(Left,T90,150);
         archery();
       }
     }
