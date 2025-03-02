@@ -1826,7 +1826,7 @@ void obstacle() {
   go(0, 0);
   inter_cnt = 1;
   beep(2);
-  move(forward, T90 / 8, 100);
+  move(forward, T90 / 6, 100);
 
   while (1) {
     go(100, 100);
@@ -1834,7 +1834,7 @@ void obstacle() {
       go(60, 60);
       while (intersectionL || intersectionR)
         ;
-      move(forward, T90 / 4, 60);
+      // move(forward, T90 / 4, 60);
       inter_cnt += 1;
     }
     if (inter_cnt == 2) {
