@@ -1728,7 +1728,7 @@ unsigned int vl(char xv) {
     return vl_double_check(xv);
   } else return vl_dis;
 }
-void football() {
+void bowling() {
   int T90 = EEPROM_read_int(T90_address);
   int arm_dropping = EEPROM_read_int(arm_dropping_address);
   int arm_normal = EEPROM_read_int(arm_normal_address);
@@ -1739,14 +1739,14 @@ void football() {
       move(Back, T90 / 8, 100);
       beep(3);
       
-        move(Right, T90 / 6, 100);
+        // move(Right, T90 / 6, 100);
         move(forward, T90 / 4, 60);
         move_arm(550, 1000);
         delay(1000);
         move_arm(100, 500);
         delay(1000);
         move(Back, T90 / 6, 100);
-        move(Left, T90 * 2, 150);
+        // move(Left, T90 * 2, 150);
         go(60, 60);
         break;
       
@@ -1928,7 +1928,7 @@ void color_detection() {
         lcd.print("Football");
         move(forward,T90/3,100);
         move(Left,T90,150);
-        football();
+        bowling();
       }
     }
     if (left_card == SILVER) {
@@ -1981,7 +1981,7 @@ void color_detection() {
         lcd.print("Football");
         move(forward,T90/3,100);
         move(Right,T90,150);
-        football();
+        bowling();
       }
     }
     if (right_card == SILVER) {
