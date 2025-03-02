@@ -1477,7 +1477,7 @@ void robot_setup() {
   lcd.begin(20, 4);
   delay(800);
 }
-void get_back(void) {
+void get_back() {
   int T90 = EEPROM_read_int(T90_address);
 
   while (!(intersectionL && intersectionR) && color_L == WHITE && color_R == WHITE) {
@@ -1837,16 +1837,9 @@ void obstacle() {
       move(forward, T90 / 4, 60);
       inter_cnt += 1;
     }
-    if (inter_cnt == 3) {
-
-      move(Back, T90 * 2.2, 150);
-      move(Left, T90 * 1.9, 150);
-      go(60, 60);
-      break;
-    }
     if (inter_cnt == 2) {
-      move(forward, T90 / 3, 100);
-      move(Back, T90 * 1.7, 150);
+      // move(forward, T90 / 7, 100);
+      move(Back, T90 * 1.5, 150);
       move(Left, T90 * 1.9, 150);
       go(60, 60);
       break;
