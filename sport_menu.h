@@ -77,38 +77,36 @@ void linefollow_Red() {
 }
 void linefollow() {
   if (SM == HIGH) {
-    go(255, 255);
+    go(200, 200);
   } else if (SR1 == HIGH) {
-    go(220, 120);
+    go(200, 60);
   } else if (SR2 == HIGH) {
-    go(255, 85);
+    go(200, -30);
   } else if (SR3 == HIGH) {
-    go(255, -105);
+    go(200, -90);
   } else if (SR4 == HIGH) {
-    go(255, -175);
+    go(200, -150);
   } else if (SR5 == HIGH) {
-    go(255, -255);
+    go(200, -200);
   } else if (SR6 == HIGH) {
-    go(255, -255);
+    go(200, -200);
   } else if (SL1 == HIGH) {
-    go(155, 255);
+    go(60, 200);
   } else if (SL2 == HIGH) {
-    go(85, 255);
+    go(-30, 200);
   } else if (SL3 == HIGH) {
-    go(-105, 255);
+    go(-90, 200);
   } else if (SL4 == HIGH) {
-    go(-175, 255);
+    go(-150, 200);
   } else if (SL5 == HIGH) {
-    go(-255, 255);
+    go(-200, 200);
   } else if (SL6 == HIGH) {
-    go(-255, 255);
-  } else {
-    go(255, 255);
-  }
+    go(-200, 200);
+  } 
 }
 void linefollow_item() {
-  int spd = EEPROM_read_int(spd_address);
-
+  int spd = 160;
+  /*
   if (SL10 && SM) {
     move(forward, T90 / 8, 100);
     move(Left, T90 * 0.8, 100);
@@ -118,9 +116,9 @@ void linefollow_item() {
     move(Right, T90 * 0.8, 100);
     go(spd * 0.35, -spd * 1.5);
   }
-
+  */
   if (SM == 1) go(spd, spd);
-
+  /*
   if (SL10) {
     move(forward, T90 / 8, 100);
     move(Left, T90 * 0.8, 100);
@@ -130,7 +128,7 @@ void linefollow_item() {
     move(Right, T90 * 0.8, 100);
     go(spd * 0.35, -spd * 1.5);
   }
-
+  */
   else if (SL1) go(spd * 0.5, spd * 1.1);
   else if (SR1) go(spd * 1.1, spd * 0.5);
 
@@ -1500,18 +1498,18 @@ void wlift() {
   int gripper_open = EEPROM_read_int(gripper_open_address);
   int inter_cnt = 0;  //intersection counting
   delay(50);
-  move_arm(800, 400);
+  move_arm(900, 400);
   delay(500);
   go(80, 80);
   while (1) {
     lcd.clear();
     lcd.print(inter_cnt);
     linefollow();
-    if (intersectionL && intersectionR) {
+    if (intersectionL || intersectionR) {
       if (inter_cnt == 0) {
         go(50, 50);
-        while (intersectionL && intersectionR)
-          ;
+        while (intersectionL || intersectionR)
+        ;
         inter_cnt += 1;
       } else if (inter_cnt == 1) {
         go(0, 0);
@@ -1524,14 +1522,14 @@ void wlift() {
       move(Back, T90 / 2, 100);
       move_arm(345, 500);
       delay(300);  //arm_normal
-      move(forward, T90 / 5, 50);
+      move(forward, T90 / 4.6, 50);
       beep(3);
       lcd.print(inter_cnt);
       lcd.clear();
       lcd.print("picking up");
       move_arm(780, 200);  //PICKUP
       delay(1500);
-      move(forward, T90 / 2, 100);
+      move(forward, T90 / 1.5, 100);
       inter_cnt += 1;
     }
     if (inter_cnt >= 4) {
@@ -1745,8 +1743,8 @@ void bowling() {
         delay(1000);
         move_arm(100, 500);
         delay(1000);
-        move(Back, T90 / 6, 100);
-        // move(Left, T90 * 2, 150);
+        move(Back, T90 / 5, 100);
+         move(Left, T90 * 2, 150);
         go(60, 60);
         break;
       
@@ -1817,6 +1815,7 @@ void archery() {
   go(60, 60);
   get_back();
 }
+
 void obstacle() {
   int T90 = EEPROM_read_int(T90_address);
   int inter_cnt = 0;  //intersection counting
@@ -1920,6 +1919,7 @@ void color_detection() {
   left_card = color_L;
   right_card = color_R;
   if (left_card != WHITE) {
+    direction=Left;
     if (left_card == GREEN) {
         go(0, 0);
         beep(1);
@@ -1973,6 +1973,7 @@ void color_detection() {
     }
   }
   else if (right_card != WHITE) {
+    direction=Right;
     if (right_card == GREEN) {
         go(0, 0);
         beep(1);
