@@ -1492,6 +1492,50 @@ void get_back() {
   }
   go(60, 60);
 }
+// void wlift() {
+//   int T90 = EEPROM_read_int(T90_address);
+//   int gripper_close = EEPROM_read_int(gripper_close_address);
+//   int gripper_open = EEPROM_read_int(gripper_open_address);
+//   int inter_cnt = 0;  //intersection counting
+//   delay(50);
+//   move_arm(900, 400);
+//   delay(500);
+//   go(80, 80);
+//   while (true){
+//     lcd.clear();
+//     lcd.print(inter_cnt);
+//     linefollow();
+//     if(intersectionL || intersectionR){
+//       inter_cnt++;
+//       if(inter_cnt == 1){ // found first intersection
+//         go(0,0);
+//         move_arm(345, 200); // makes sure arm is lowered
+//         delay(500);
+//         go(50, 50);
+//         delay(100);
+//         while (!(intersectionL || intersectionR));
+//       }
+//       else if(inter_cnt == 2){
+//         go(0,0);
+//         move_arm(780, 200);  // Lift the weight only after proper positioning
+//         delay(1500);
+//         go(50,50);
+//         delay(100);
+//         while (!(intersectionL || intersectionR));
+//       }
+//       else if(inter_cnt == 3){
+//         go(0,0);
+//         move_arm(345, 200);  //Dropping the weight
+//         delay(3000);
+//         move(Back, T90 * 1.5, 100);
+//         move(Left, T90 * 2, 150);
+//         get_back();
+//         break;
+//       }
+//     }
+//   }
+// }
+
 void wlift() {
   int T90 = EEPROM_read_int(T90_address);
   int gripper_close = EEPROM_read_int(gripper_close_address);
@@ -1518,7 +1562,7 @@ void wlift() {
         inter_cnt += 1;
       }
     }
-    if (inter_cnt == 2) {
+    if (inter_cnt == 2) { //originally 2
       move(Back, T90 / 2, 100);
       move_arm(345, 500);
       delay(300);  //arm_normal
@@ -1532,13 +1576,13 @@ void wlift() {
       move(forward, T90 / 1.5, 100);
       inter_cnt += 1;
     }
-    if (inter_cnt >= 4) {
+    if (inter_cnt >= 4) { //4
       go(0, 0);
       move(Back, T90 / 13, 60);
       lcd.clear();
       lcd.print("putting down");
       move_arm(345, 200);  //Dropping the weight
-      delay(3000);
+      delay(1500);
       move(Back, T90 * 1.5, 100);
       move(Left, T90 * 2, 150);
       get_back();
@@ -1958,7 +2002,7 @@ void color_detection() {
         lcd.print("Trck");
         move(forward,T90/3,100);
         move(Left,T90,150);
-        track(4,Left);
+        track(1,Left);
       }
     }
     if (left_card == YELLOW) {
@@ -2012,7 +2056,7 @@ void color_detection() {
         lcd.print("Trck");
         move(forward,T90/3,100);
         move(Right,T90,150);
-        track(4,Right);
+        track(1,Right);
       }
     }
     if (right_card == YELLOW) {

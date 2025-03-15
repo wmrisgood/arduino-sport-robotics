@@ -127,8 +127,8 @@ int silver_voltage_R=03,silver_voltage_L=03;
 #define LEFT 0
 #define RIGHT 1
 
-#define intersectionL ((SM || SL1 || SR1) && SL10)
-#define intersectionR ((SM || SL1 || SR1) && SR10)
+#define intersectionL ((SM || SL2 || SR2) && SL10)
+#define intersectionR ((SM || SL2 || SR2) && SR10)
 
 // EEPROM addresses
 #define spd_address 150
