@@ -1776,9 +1776,10 @@ void bowling() {
   int arm_normal = EEPROM_read_int(arm_normal_address);
   while (1) {
     linefollow();
-    if (intersectionL && intersectionR) {
+    if (intersectionL || intersectionR) {
       go(0, 0);
       move(Back, T90 / 8, 100);
+      move(Left, T90 / 10, 100);
       beep(3);
       
         // move(Right, T90 / 6, 100);
@@ -1873,7 +1874,7 @@ void obstacle() {
 
   while (1) {
     go(100, 100);
-    if (intersectionL && intersectionR) {
+    if (intersectionL || intersectionR) {
       go(60, 60);
       while (intersectionL || intersectionR)
         ;
@@ -1969,7 +1970,7 @@ void color_detection() {
         beep(1);
       if (color_L == GREEN) {
         lcd.clear();
-        lcd.print("Football");
+        lcd.print("Bowling");
         move(forward,T90/3,100);
         move(Left,T90,150);
         bowling();
@@ -2023,7 +2024,7 @@ void color_detection() {
         beep(1);
       if (color_R == GREEN) {
         lcd.clear();
-        lcd.print("Football");
+        lcd.print("Bowling");
         move(forward,T90/3,100);
         move(Right,T90,150);
         bowling();
